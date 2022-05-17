@@ -26,7 +26,7 @@
       label="Clave"
       label-for="clave"
     >
-      <b-form-input id="clave" size="lg" v-model="clave"></b-form-input>
+      <b-form-input type="password" id="clave" size="lg" v-model="clave"></b-form-input>
     </b-form-group>
     <b-button v-if="!conectado" class="btn btn-active" v-on:click="login()"> Ingresar </b-button>
   

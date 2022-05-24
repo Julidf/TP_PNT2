@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../components/Login.vue";
+import Login from "../views/Login.vue";
+import Register from "../components/Register.vue";
 import MisPracticas from "../components/MisPracticas.vue";
 import LasMasPracticadas from "../components/LasMasPracticadas.vue";
 import MenuUsuario from "../components/MenuUsuario.vue";
@@ -31,6 +32,11 @@ const routes = [{
         path: "/Login",
         name: "Login",
         component: Login,
+    },
+    {
+        path: "/Register",
+        name: "Register",
+        component: Register,
     },
     {
         path: "/MisPracticas",

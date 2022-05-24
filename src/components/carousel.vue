@@ -1,69 +1,64 @@
 <template>
   <div>
     <b-carousel
-      id="carousel-1"
-      v-model="slide"
-      :interval="4000"
-      controls
+      id="carousel-fade"
+      fade
       indicators
-      background="#FF5733"
-      img-width="200px"
-      img-height="200PX"
+      interval=2500
       style="text-shadow: 1px 1px 2px #373345"
-      @sliding-start="onSlideStart"
-      @sliding-end="onSlideEnd"
     >
+      <b-carousel-slide
+        :img-src="require('@/assets/ozark.jpg')"
+        caption="Ozark"
+        text="Llegando pronto a tu aplicacion!"
+      ></b-carousel-slide>
+
       <b-carousel-slide>
+        <h3>Arrow</h3>
+        <h4>Tambien llegando pronto</h4>
         <template #img>
           <img
-            class="d-block w-100"
-            width="512px"
-            height="512px"
-            src="../assets/Ozark.jpg"
+            width="1024"
+            height="480"
+            class="d-block img-fluid w-100"
+            src="../assets/arrow.jpg"
             alt="image slot"
-          />
-        </template>
-      </b-carousel-slide>
-      <b-carousel-slide>
-        <template #img>
-          <img
-            class="d-block w-100"
-            width="512px"
-            height="512px"
-            src="../assets/guitarra.jpg"
-            alt="image slot"
-          />
+          >
         </template>
       </b-carousel-slide>
 
       <b-carousel-slide>
+        <h3>Dark</h3>
+        <h4>Súper atrapante!</h4>
         <template #img>
           <img
-            class="d-block  w-100"
-            width="512px"
-            height="512px"
-            src="../assets/piano2.jpg"
+            width="1024"
+            height="480"
+            class="d-block img-fluid w-100"
+            src="../assets/dark.jpg"
             alt="image slot"
-          />
+          >
         </template>
       </b-carousel-slide>
 
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
       <b-carousel-slide>
+        <h3>Stranger Things</h3>
+        <h4>La serie que lo cambio todo</h4>
         <template #img>
           <img
-            class="d-block "
-            width="512px"
-            height="512px"
-            src="../assets/piano.jpg"
+            width="1024"
+            height="480"
+            class="d-block img-fluid w-100"
+            src="../assets/strangerThings.jpg"
             alt="image slot"
-          />
+          >
         </template>
       </b-carousel-slide>
+
     </b-carousel>
   </div>
 </template>
+
 <script>
 export default {
   name: "carousel",

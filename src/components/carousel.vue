@@ -2,59 +2,32 @@
   <div>
     <b-carousel
       id="carousel-fade"
+      v-model="slide"
       fade
       indicators
-      interval=2500
-      style="text-shadow: 1px 1px 2px #373345"
+      :interval="4000"
+      style="text-shadow: 1px 1px 2px #373345 height:80%"
     >
       <b-carousel-slide
-        :img-src="require('@/assets/ozark.jpg')"
+        :img-src="require('@/assets/Ozark.jpg')"
         caption="Ozark"
         text="Llegando pronto a tu aplicacion!"
       ></b-carousel-slide>
-
-      <b-carousel-slide>
-        <h3>Arrow</h3>
-        <h4>Tambien llegando pronto</h4>
-        <template #img>
-          <img
-            width="1024"
-            height="480"
-            class="d-block img-fluid w-100"
-            src="../assets/arrow.jpg"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
-
-      <b-carousel-slide>
-        <h3>Dark</h3>
-        <h4>Súper atrapante!</h4>
-        <template #img>
-          <img
-            width="1024"
-            height="480"
-            class="d-block img-fluid w-100"
-            src="../assets/dark.jpg"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
-
-      <b-carousel-slide>
-        <h3>Stranger Things</h3>
-        <h4>La serie que lo cambio todo</h4>
-        <template #img>
-          <img
-            width="1024"
-            height="480"
-            class="d-block img-fluid w-100"
-            src="../assets/strangerThings.jpg"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
-
+      <b-carousel-slide
+        :img-src="require('@/assets/arrow.jpg')"
+        caption="Arrow"
+        text="También llegando pronto!"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        :img-src="require('@/assets/dark.jpg')"
+        caption="Dark"
+        text="Súper atrapante!"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        :img-src="require('@/assets/strangerThings.jpg')"
+        caption="Stranger Things"
+        text="La serie que lo cambio todo"
+      ></b-carousel-slide>
     </b-carousel>
   </div>
 </template>

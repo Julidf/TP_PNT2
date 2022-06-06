@@ -3,8 +3,7 @@
     <b-container>
       <b-nav card-header pills>
         <b-nav-item 
-            to="/" 
-            
+            to="/"   
         > 
             Inicio 
         </b-nav-item>

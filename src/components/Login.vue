@@ -33,14 +33,14 @@
         v-model="clave"
       ></b-form-input>
     </b-form-group>
-    <b-button v-if="!store.estaLogueado" class="btn btn-active" v-on:click="login()">
+    <b-button v-if="!conectado" class="btn btn-active" v-on:click="login()">
       Ingresar
     </b-button>
 
     <div class="alert alert-danger" role="alert" v-if="error">
       {{ error_msg }}
     </div>
-    <div class="alert alert-success" role="alert" v-if="store.estaLogueado">
+    <div class="alert alert-success" role="alert" v-if="conectado">
       {{ error_msg }}
     </div>
     
@@ -81,7 +81,7 @@ export default {
           this.error_msg = "Acceso concedido";
           this.error = false;
           this.store.loguearse(true);
-          this.$router.replace({name:'HomeAutenticado'})
+          //this.$router.replace({name:'HomeAutenticado'})
         } else {
           this.error_msg = "Usuario o clave incorrecta";
           this.error = true;

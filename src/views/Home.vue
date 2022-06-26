@@ -23,7 +23,7 @@ export default {
     };
   },
   created() {
-    this.usuario != null;
+    //this.usuario != null;
   },
   components: {
     carousel,

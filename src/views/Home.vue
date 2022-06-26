@@ -4,14 +4,13 @@
       <p class="text-center">
         <img alt="Vue logo" style="width: 50%" src="../assets/ortflix.png" />
       </p>
-      <carousel v-if="usuario == null"/>
+      <carousel v-if="usuario == null" />
       <!-- <Titulo texto="Tu lugar para ver peliculas" /> -->
     </div>
   </b-container>
 </template>
 
 <script>
-// @ is an alias to /src
 import carousel from "../components/carousel.vue";
 // import Titulo from "../components/Titulo.vue";
 export default {

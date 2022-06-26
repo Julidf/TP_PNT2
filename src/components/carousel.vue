@@ -4,11 +4,11 @@
       id="carousel-fade"
       fade
       indicators
-      interval=2500
+      interval="2500"
       style="text-shadow: 1px 1px 2px #373345"
     >
       <b-carousel-slide
-        :img-src="require('@/assets/ozark.jpg')"
+        :img-src="require('@/assets/Ozark.jpg')"
         caption="Ozark"
         text="Llegando pronto a tu aplicacion!"
       ></b-carousel-slide>
@@ -23,7 +23,7 @@
             class="d-block img-fluid w-100"
             src="../assets/arrow.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
 
@@ -37,7 +37,7 @@
             class="d-block img-fluid w-100"
             src="../assets/dark.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
 
@@ -51,10 +51,9 @@
             class="d-block img-fluid w-100"
             src="../assets/strangerThings.jpg"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
-
     </b-carousel>
   </div>
 </template>

@@ -3,8 +3,12 @@
     <div class="bg-dark">
       <img src="../assets/logo1.svg" id="icon" alt="User Icon" />
     </div>
-  
+
     <h1>Cree su usuario</h1>
+       <div>
+      <h1> hola: {{ store.estaLogueado }}</h1>
+     
+      </div>
     <b-form-group
       label-cols="4"
       label-cols-lg="2"
@@ -26,10 +30,17 @@
       label="Clave"
       label-for="clave"
     >
-      <b-form-input type="password" id="clave" size="lg" v-model="clave"></b-form-input>
+      <b-form-input
+        type="password"
+        id="clave"
+        size="lg"
+        v-model="clave"
+      ></b-form-input>
     </b-form-group>
-    <b-button v-if="!conectado" class="btn btn-active" v-on:click="login()"> Ingresar </b-button>
-  
+    <b-button v-if="!conectado" class="btn btn-active" v-on:click="login()">
+      Ingresar
+    </b-button>
+
     <div class="alert alert-danger" role="alert" v-if="error">
       {{ error_msg }}
     </div>
@@ -38,7 +49,9 @@
     </div>
     <div v-if="conectado">
       <b-button class="btn btn-black">
-        <router-link to="/MenuUsuario"> Presiona aqui para ir a mis practicas </router-link>
+        <router-link to="/MenuUsuario">
+          Presiona aqui para ir a mis practicas
+        </router-link>
       </b-button>
     </div>
   </b-container>
@@ -49,8 +62,14 @@ import axios from "axios";
 
 import { mapActions } from "vuex";
 
+import { useStore } from "../store/store";
+
 export default {
-  name: "Login",
+  name: "Register",
+  setup() {
+    const store = useStore();
+    return { store };
+  },
   data() {
     return {
       NombreUsuario: "",
@@ -90,7 +109,7 @@ export default {
           this.error_msg = "Acceso concedido";
           this.error = false;
           this.conectado = true;
-          this.accionRegistrarUsuario (usuario);
+          this.accionRegistrarUsuario(usuario);
           this.cargarFavoritas();
         } else {
           this.error_msg = "Usuario o clave incorrecta";
@@ -101,7 +120,10 @@ export default {
         console.log(error);
       }
     },
-    ...mapActions(["accionRegistrarUsuario", "accionRegistrarTodasLasFavoritas"]),
+    ...mapActions([
+      "accionRegistrarUsuario",
+      "accionRegistrarTodasLasFavoritas",
+    ]),
   },
 };
 </script>

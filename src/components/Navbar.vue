@@ -63,8 +63,8 @@ export default {
     return {};
   },
   created() {
-    this.usuario = null; // teniendo en cuenta que no tenemos creado el usuario en el store
-    // this.usuario = 1; // teniendo en cuenta que no tenemos creado el usuario en el store
+    // this.usuario = null; // teniendo en cuenta que no tenemos creado el usuario en el store
+    this.usuario = 1; // teniendo en cuenta que no tenemos creado el usuario en el store
   },
 };
 </script>

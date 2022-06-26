@@ -64,6 +64,7 @@ export default {
   },
   created() {
     this.usuario = null; // teniendo en cuenta que no tenemos creado el usuario en el store
+    // this.usuario = 1; // teniendo en cuenta que no tenemos creado el usuario en el store
   },
 };
 </script>
@@ -77,5 +78,11 @@ export default {
   color: red;
   background-color:black;
   margin:1px;
+  border-radius: 5px;
+}
+
+.nav-item.nav-item.nav-item a:hover{
+  background-color: #f31f2d;
+  color: white;
 }
 </style>

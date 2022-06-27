@@ -4,10 +4,8 @@ import Home from "../views/Home.vue";
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import HomeAutenticado from "../components/HomeAutenticado.vue";
-import { useStore } from "../store/store";
-import pinia from "../store/index";
-
-Vue.use(VueRouter);
+/* import { useStore } from "../store/store";
+import pinia from "../store/index"; */
 
 const routes = [
   {
@@ -29,7 +27,7 @@ const routes = [
     path: "/HomeAutenticado",
     name: "HomeAutenticado",
     component: HomeAutenticado,
-    //meta:{requiereAuth:true}
+    meta:{requiereAuth:true}
   },
 
 ];
@@ -40,19 +38,21 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+Vue.use(VueRouter);
 
+/* router.beforeEach((to, from, next) => {
+  const requiereAuth = to.meta.requiereAuth;
   const store = useStore(pinia);
-  const requiereAuth = to.meta.requiereAuth
+  const log = store.estaLogueado;
 
-  if (requiereAuth && !store.estaLogueado){
-    //to();
-    //from();
-    next({name: "login"}); 
+  console.log(requiereAuth);
+  console.log(log);
+
+  if (!log && requiereAuth ){
+    next({name: "Login"}); 
   } else{
-    //next({name:'Login'})
-    next(); 
+    next();
   }
-});
+}); */
 
 export default router;

@@ -1,9 +1,5 @@
 <template>
   <b-container fluid class="p-4 bg-light">
-    <div class="bg-dark">
-      <img src="../assets/logo1.svg" id="icon" alt="User Icon" />
-    </div>
-
     <h1>Cree su usuario</h1>
        <div>
       <h1> hola: {{ store.estaLogueado }}</h1>

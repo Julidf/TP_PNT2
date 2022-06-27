@@ -42,9 +42,6 @@
     <div class="alert alert-danger" role="alert"  v-if="error" >
       {{ error_msg }}
     </div>
-    <div class="alert alert-success" role="alert" v-if="store.estaLogueado">
-      {{ error_msg }}
-    </div>
     
   </b-container>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Titulo texto="Favoritas"></Titulo>
+    <Titulo texto="Películas marcadas como vistas"></Titulo>
     <div v-for="(item, index) in favoritas" :key="index">
       <li
         class="
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Titulo from "../components/Titulo.vue";
+import Titulo from "./Titulo.vue";
 import { mapState } from "vuex";
 export default {
   name: "LasMasPracticadas",

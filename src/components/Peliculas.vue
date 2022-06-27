@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Titulo from "../components/Titulo.vue";
+import Titulo from "./Titulo.vue";
 import axios from "axios";
 import Footer from "./Footer.vue";
 export default {

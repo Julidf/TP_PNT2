@@ -2,11 +2,13 @@
   <div class="contenedorNavBar">
     <b-container>
       <b-nav card-header pills>
+
         <b-nav-item 
             to="/"   
         > 
             Inicio 
         </b-nav-item>
+
         <b-nav-item 
             :to="{ name: 'Login' }" 
             
@@ -14,6 +16,7 @@
         >
             Ingresar
         </b-nav-item>
+
         <b-nav-item 
             :to="{ name: 'Register' }" 
             
@@ -21,34 +24,47 @@
         >
             Registrarse
         </b-nav-item>
+
         <b-nav-item
-          :to="{ name: 'MenuUsuario' }"
+          :to="{ name: 'Peliculas' }"
           
           v-if="usuario != null"
         >
-          Menu Usuario
+          Series y Películas
         </b-nav-item>
+
         <b-nav-item
-          :to="{ name: 'MisPracticas' }"
+          :to="{ name: 'PeliculasVistas' }"
           
           v-if="usuario != null"
         >
-          Cancionero
+          Vistas
         </b-nav-item>
-        <b-nav-item
-          :to="{ name: 'LasMasPracticadas' }"
+
+        <b-nav-item-dropdown dark right v-if="usuario!=null">
+          <template #button-content>
+            <em>Nombre de usuario</em>
+          </template>
+
+          <b-dropdown-item 
+            style="background-color:black"
+            :to="{ name: 'MenuUsuario' }"
+            
+            v-if="usuario != null"
+          >
+            Menú de Usuario
+          </b-dropdown-item>
+
+          <b-dropdown-item  
+            :to="{ name: 'Logout' }"
           
-          v-if="usuario != null"
-        >
-          Favoritas
-        </b-nav-item>
-        <b-nav-item
-          :to="{ name: 'Logout' }"
-          
-          v-if="usuario != null"
-        >
-          Desconectarse
-        </b-nav-item>
+            v-if="usuario != null"
+          >
+            Desconectarse
+          </b-dropdown-item>
+
+        </b-nav-item-dropdown>
+
       </b-nav>
       <!-- Child route gets rendered in <router-view> or <nuxt-child> -->
     </b-container>
@@ -79,6 +95,15 @@ export default {
   background-color:black;
   margin:1px;
   border-radius: 5px;
+}
+
+.b-nav-item-dropdown {
+  padding: 5px;
+  border-radius:5px;
+}
+
+.dropdown-menu.show {
+  backgorund-color:black;
 }
 
 .nav-item.nav-item.nav-item a:hover{

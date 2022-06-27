@@ -3,8 +3,8 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../components/Register.vue";
-import MisPracticas from "../components/MisPracticas.vue";
-import LasMasPracticadas from "../components/LasMasPracticadas.vue";
+import Peliculas from "../components/Peliculas.vue";
+import PeliculasVistas from "../components/PeliculasVistas.vue";
 import MenuUsuario from "../components/MenuUsuario.vue";
 import Reproductor from "../components/Reproductor.vue";
 
@@ -39,14 +39,14 @@ const routes = [{
         component: Register,
     },
     {
-        path: "/MisPracticas",
-        name: "MisPracticas",
-        component: MisPracticas,
+        path: "/Peliculas",
+        name: "Peliculas",
+        component: Peliculas,
     },
     {
-        path: "/lasMasPracticadas",
-        name: "LasMasPracticadas",
-        component: LasMasPracticadas,
+        path: "/PeliculasVistas",
+        name: "PeliculasVistas",
+        component: PeliculasVistas,
     },
 
     {

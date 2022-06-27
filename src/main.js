@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 //import Router from 'vue-router';
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import {createPinia, PiniaVuePlugin } from "pinia";
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,8 +19,13 @@ Vue.use(IconsPlugin);
 
 Vue.config.productionTip = false;
 
+const pinia = createPinia();
+Vue.use(PiniaVuePlugin);
+
+
 new Vue({
   router,
   store,
+  pinia,
   render: (h) => h(App),
 }).$mount("#app");

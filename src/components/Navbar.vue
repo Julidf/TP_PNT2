@@ -4,15 +4,22 @@
       <b-nav card-header pills>
 
         <b-nav-item 
-            to="/"   
+            to="/"
+            v-if="!store.estaLogueado"   
+        > 
+            Inicio 
+        </b-nav-item>
+
+        <b-nav-item 
+            :to="{ name: 'HomeAutenticado' }" 
+            v-if="store.estaLogueado"
         > 
             Inicio 
         </b-nav-item>
 
         <b-nav-item 
             :to="{ name: 'Login' }" 
-            
-            v-if="usuario == null"
+            v-if="!store.estaLogueado"
         >
             Ingresar
         </b-nav-item>
@@ -20,28 +27,20 @@
         <b-nav-item 
             :to="{ name: 'Register' }" 
             
-            v-if="usuario == null"
+            v-if="!store.estaLogueado"
         >
             Registrarse
         </b-nav-item>
 
         <b-nav-item
-          :to="{ name: 'Peliculas' }"
-          
-          v-if="usuario != null"
-        >
-          Series y Películas
-        </b-nav-item>
-
-        <b-nav-item
           :to="{ name: 'PeliculasVistas' }"
           
-          v-if="usuario != null"
+          v-if="store.estaLogueado"
         >
           Vistas
         </b-nav-item>
 
-        <b-nav-item-dropdown dark right v-if="usuario!=null">
+        <b-nav-item-dropdown dark right v-if="store.estaLogueado">
           <template #button-content>
             <em>Nombre de usuario</em>
           </template>
@@ -50,15 +49,13 @@
             style="background-color:black"
             :to="{ name: 'MenuUsuario' }"
             
-            v-if="usuario != null"
+            v-if="store.estaLogueado"
           >
             Menú de Usuario
           </b-dropdown-item>
 
           <b-dropdown-item  
-            :to="{ name: 'Logout' }"
-          
-            v-if="usuario != null"
+            v-if="store.estaLogueado" v-on:click="desloguearse()"
           >
             Desconectarse
           </b-dropdown-item>
@@ -72,15 +69,19 @@
 </template>
 
 <script>
+import { useStore } from "../store/store";
+
 export default {
   name: "Navbar",
-  components: {},
-  data() {
-    return {};
+  setup(){
+    const store = useStore()
+    return { store }
   },
-  created() {
-    // this.usuario = null; // teniendo en cuenta que no tenemos creado el usuario en el store
-    this.usuario = 1; // teniendo en cuenta que no tenemos creado el usuario en el store
+  methods: {
+    desloguearse(){
+      this.store.desloguearse();
+      this.$router.replace({name:'Home'})
+    }
   },
 };
 </script>

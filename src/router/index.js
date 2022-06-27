@@ -1,12 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
+import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
-import Peliculas from "../components/Peliculas.vue";
+import HomeAutenticado from "../components/HomeAutenticado.vue";
 import PeliculasVistas from "../components/PeliculasVistas.vue";
 import MenuUsuario from "../components/MenuUsuario.vue";
-import Reproductor from "../components/Reproductor.vue";
+import { useStore } from "../store/store";
+
 
 Vue.use(VueRouter);
 
@@ -22,13 +23,6 @@ const routes = [{
         component: MenuUsuario,
     },
     {
-        path: "/MenuUsuario/:nombreUsuario",
-        name: "MenuUsuario",
-        component: MenuUsuario,
-        props: true,
-    },
-
-    {
         path: "/Login",
         name: "Login",
         component: Login,
@@ -39,22 +33,16 @@ const routes = [{
         component: Register,
     },
     {
-        path: "/Peliculas",
-        name: "Peliculas",
-        component: Peliculas,
-    },
-    {
         path: "/PeliculasVistas",
         name: "PeliculasVistas",
         component: PeliculasVistas,
     },
-
     {
-        path: "/Reproductor/:id",
-        name: "Reproductor",
-        component: Reproductor,
-        props: true,
-    },
+        path: "/HomeAutenticado",
+        name: "HomeAutenticado",
+        component: HomeAutenticado,
+        meta:{requiereAuth:true}
+    }
 ];
 
 const router = new VueRouter({
@@ -63,4 +51,17 @@ const router = new VueRouter({
     routes,
 });
 
+router.beforeEach((to, from, next) => {
+
+    if (to.meta.requiereAuth){
+      const store = useStore();
+      if (to.meta.requiereAuth && !store.estaLogueado){
+        next({ name: "Login" }); 
+      } else{
+        next();
+      }
+    }else{
+      next();
+    }
+  });
 export default router;

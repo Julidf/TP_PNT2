@@ -4,7 +4,7 @@
       <p class="text-center">
         <img alt="Vue logo" style="width: 50%" src="../assets/ortflix.png" />
       </p>
-      <carousel v-if="usuario == null"/>
+      <carousel />
       <!-- <Titulo texto="Tu lugar para ver peliculas" /> -->
     </div>
   </b-container>
@@ -22,9 +22,6 @@ export default {
         backgroundColor: "rgb()",
       },
     };
-  },
-  created() {
-    this.usuario != null;
   },
   components: {
     carousel,

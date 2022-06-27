@@ -104,9 +104,7 @@ export default {
           fecha_nacimiento: '',
           food: null,
           checked: []
-        },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-        show: true
+        }
     };
   },
   components: {

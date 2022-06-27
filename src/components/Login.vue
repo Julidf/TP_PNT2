@@ -5,17 +5,19 @@
     </div>
     
     <h1>Ingresa tu usuario y clave</h1>
+    <h1>{{this.nombreUsuario}}</h1>
+    <h1>{{this.clave}}</h1>
     <b-form-group
       label-cols="4"
       label-cols-lg="2"
       label-size="lg"
       label="Usuario"
-      label-for="NombreUsuario"
+      label-for="nombreUsuario"
     >
       <b-form-input
-        id="NombreUsuario"
+        id="nombreUsuario"
         size="lg"
-        v-model="NombreUsuario"
+        v-model="nombreUsuario"
       ></b-form-input>
     </b-form-group>
 
@@ -33,14 +35,14 @@
         v-model="clave"
       ></b-form-input>
     </b-form-group>
-    <b-button v-if="!conectado" class="btn btn-active" v-on:click="login()">
+    <b-button class="btn btn-active" v-if="!store.estaLogueado" v-on:click="login()">
       Ingresar
     </b-button>
 
-    <div class="alert alert-danger" role="alert" v-if="error">
+    <div class="alert alert-danger" role="alert"  v-if="error" >
       {{ error_msg }}
     </div>
-    <div class="alert alert-success" role="alert" v-if="conectado">
+    <div class="alert alert-success" role="alert" v-if="store.estaLogueado">
       {{ error_msg }}
     </div>
     
@@ -61,27 +63,32 @@ export default {
   },
   data() {
     return {
-      NombreUsuario: "",
+      nombreUsuario: "",
       clave: "",
       error: false,
       error_msg: "",
     };
   },
   methods: {
-    async login() {
-      let usuarios = await axios.get(
-        "https://62954fba63b5d108c19cb5bd.mockapi.io/Usuarios"
-      );
-      usuarios = usuarios.data;
+     async login() {
+      let usuarios = [];
       try {
-        const usuario = usuarios.find(
-          (u) => u.name.toUpperCase() == this.NombreUsuario.toUpperCase()
+        usuarios = await axios.get(
+        "https://62954fba63b5d108c19cb5bd.mockapi.io/Usuarios"
         );
-        if (usuario.name && usuario.pass == this.clave) {
+
+        usuarios = usuarios.data;
+
+        let usuario = usuarios.find(
+          (u) =>
+            u.username.toUpperCase() == this.nombreUsuario.toUpperCase()
+        );
+
+        if (usuario.username == this.nombreUsuario && usuario.clave == this.clave) {
           this.error_msg = "Acceso concedido";
           this.error = false;
-          this.store.loguearse(true);
-          //this.$router.replace({name:'HomeAutenticado'})
+          this.store.loguearse();
+          this.$router.replace({name:'HomeAutenticado'});
         } else {
           this.error_msg = "Usuario o clave incorrecta";
           this.error = true;
@@ -93,8 +100,11 @@ export default {
     },
     ...mapActions(),
     //...mapActions(["accionRegistrarUsuario", "accionRegistrarTodasLasFavoritas"]),
-  },
-  
+  }, 
+
+
+
+
 };
 
 </script>

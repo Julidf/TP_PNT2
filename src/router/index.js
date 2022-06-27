@@ -29,7 +29,7 @@ const routes = [
     path: "/HomeAutenticado",
     name: "HomeAutenticado",
     component: HomeAutenticado,
-    meta:{requiereAuth:true}
+    //meta:{requiereAuth:true}
   },
 
 ];

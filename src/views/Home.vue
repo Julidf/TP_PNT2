@@ -22,9 +22,6 @@ export default {
       },
     };
   },
-  created() {
-    //this.usuario != null;
-  },
   components: {
     carousel,
     // Titulo

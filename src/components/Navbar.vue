@@ -9,7 +9,7 @@
         <b-nav-item :to="{ name: 'Register' }">
           Registrarse
         </b-nav-item>
-        <b-nav-item :to="{ name: 'Logout' }" v-if="store.estaLogueado == true">
+        <b-nav-item  v-if="store.estaLogueado == true" v-on:click="desloguearse()">
           Desloguearse
         </b-nav-item>
       </b-nav>
@@ -28,9 +28,11 @@ export default {
     const store = useStore()
     return { store };
   },
-  components: {},
-  data() {
-    return {};
+  methods: {
+    desloguearse (){
+      this.store.desloguearse();
+      this.$router.replace({name:'Home'})
+    }
   },
 };
 </script>

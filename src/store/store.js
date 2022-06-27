@@ -5,8 +5,11 @@ export const useStore = defineStore("tp",{
         _logueado: false,
     }),
     actions: {
-        loguearse(estado) {
-            this._logueado = estado;
+        loguearse() {
+            this._logueado = true;
+        },
+        desloguearse() {
+            this._logueado = false;
         },
     },
     getters: {

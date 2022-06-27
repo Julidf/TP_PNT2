@@ -3,11 +3,11 @@
     <b-container>
       <b-nav card-header pills>
 
-        <b-nav-item to="/" > <!-- v-if="!store.estaLogueado " -->
+        <b-nav-item to="/" v-if="!store.estaLogueado "> 
           Inicio 
         </b-nav-item>
 
-        <b-nav-item :to="{ name: 'HomeAutenticado' }" > <!-- v-if="!store.estaLogueado " -->
+        <b-nav-item :to="{ name: 'HomeAutenticado' }" v-if="store.estaLogueado " > 
           Inicio
         </b-nav-item>
 

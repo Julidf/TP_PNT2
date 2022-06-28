@@ -1,21 +1,20 @@
 <template>
   <b-container>
-    <Titulo texto="Gestión del usuario usuario.nombre" />
+    <Titulo :texto=this.texto />
 
   <div>
-    <b-form @submit="onSubmit" @reset="onReset">
+    <b-form ref="form">
       <b-form-group
         id="input-group-1"
         label="Nombre de usuario"
         label-for="input-1"
-        description="Este dato no puede ser editado."
+        description="Este dato no debe ser editado."
       >
         <b-form-input
           id="input-1"
           v-model="form.username"
           type="text"
-          placeholder="usuario.username"
-          disabled
+          placeholder="Tu nombre de usuario"
           required
         ></b-form-input>
       </b-form-group>
@@ -46,7 +45,6 @@
           id="input-3"
           v-model="form.fecha_nacimiento"
           type="date"
-          placeholder="usuario.fecha_nacimiento"
           required
         ></b-form-input>
 
@@ -84,7 +82,11 @@
 
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Actualizar información</b-button>
+      <b-button v-on:click="update()" variant="primary">Actualizar información</b-button>
+      <br>
+      <div class="alert alert-success" role="alert" v-if="actualizado">
+      {{ msg }}
+      </div>
     </b-form>
   </div>
 
@@ -92,7 +94,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { useStore } from "../store/store";
+import axios from "axios";
+
 import Titulo from "../components/Titulo.vue";
 
 export default {
@@ -102,22 +106,52 @@ export default {
           username: '',
           nombre_completo: '',
           fecha_nacimiento: '',
-          food: null,
-          checked: []
-        }
+          correo_electronico: '',
+          clave: ''
+        },
+      usuario: "",
+      actualizado: false,
+      msg: "",
+      texto: "Gestión del usuario "
     };
+  },
+  created() {
+    this.setUsuarioFormulario();
+  },
+  setup(){
+    const store = useStore()
+    return { store }
   },
   components: {
     Titulo,
   },
-  computed: {
-    ...mapState(["usuario"]),
-  },
   methods: {
-    onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
+    async update(){
+      try {
+        
+        await axios.put(`https://62954fba63b5d108c19cb5bd.mockapi.io/Usuarios/${this.usuario.id}`,
+        {
+          
+          username: this.form.username,
+          nombre_completo: this.form.nombre_completo,
+          fecha_nacimiento: this.form.fecha_nacimiento,
+          correo_electronico: this.form.correo_electronico,
+          clave: this.form.clave
+          
+        });
+        this.msg = "Información actualizada correctamente";
+        this.actualizado = true;
+      } catch (error) {
+        console.log(error.response);
+      }
+    },
+    setUsuarioFormulario() {
+      let usuario = this.store.getUsuario;
+      usuario.fecha_nacimiento = usuario.fecha_nacimiento.substring(0, 10);
+      this.usuario = usuario;
+      this.form = usuario;
+      this.texto = this.texto + "\"" + this.usuario.username + "\"";
+    }
   },
 };
 </script>

@@ -11,9 +11,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import carousel from "../components/carousel.vue";
-// import Titulo from "../components/Titulo.vue";
 export default {
   name: "Home",
   data() {

@@ -7,6 +7,7 @@ import HomeAutenticado from "../components/HomeAutenticado.vue";
 import PeliculasVistas from "../components/PeliculasVistas.vue";
 import MenuUsuario from "../components/MenuUsuario.vue";
 import { useStore } from "../store/store";
+import pinia from "../store/index";
 
 
 Vue.use(VueRouter);
@@ -50,11 +51,13 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes,
 });
+Vue.use(pinia);
 
 router.beforeEach((to, from, next) => {
 
     if (to.meta.requiereAuth){
       const store = useStore();
+      // const store = useStore(pinia);
       if (to.meta.requiereAuth && !store.estaLogueado){
         next({ name: "Login" }); 
       } else{

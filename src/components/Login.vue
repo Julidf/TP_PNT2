@@ -91,7 +91,7 @@ export default {
         if (usuario.username == this.nombreUsuario && usuario.clave == this.clave) {
           this.error_msg = "Acceso concedido";
           this.error = false;
-          this.store.loguearse();
+          this.store.loguearse(usuario);
           this.$router.replace({name:'HomeAutenticado'});
         } else {
           this.error_msg = "Usuario o clave incorrecta";

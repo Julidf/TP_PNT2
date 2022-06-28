@@ -42,7 +42,8 @@
 
         <b-nav-item-dropdown dark right v-if="store.estaLogueado">
           <template #button-content>
-            <em>Nombre de usuario</em>
+            <!-- prints the user name -->
+            <em v-html="mostrarNombreUsuario()"></em>
           </template>
 
           <b-dropdown-item 
@@ -73,6 +74,11 @@ import { useStore } from "../store/store";
 
 export default {
   name: "Navbar",
+  data() {
+    return {
+      nombre: "",
+    }
+  },
   setup(){
     const store = useStore()
     return { store }
@@ -81,8 +87,19 @@ export default {
     desloguearse(){
       this.store.desloguearse();
       this.$router.replace({name:'Home'})
+    },
+    obtenerNombreUsuario(){
+      let usuario = this.store.getUsuario;
+      this.nombre = usuario.nombre_completo;
+      return this.nombre;
+    },
+    mostrarNombreUsuario(){
+      return this.obtenerNombreUsuario();
     }
   },
+  created(){
+    this.obtenerNombreUsuario();
+  }
 };
 </script>
 
@@ -104,7 +121,7 @@ export default {
 }
 
 .dropdown-menu.show {
-  backgorund-color:black;
+  background-color:black;
 }
 
 .nav-item.nav-item.nav-item a:hover{

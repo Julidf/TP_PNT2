@@ -25,7 +25,7 @@
         </b-card-text>
 
         <b-button v-if="!item.visto" href="#" v-on:click="marcarPelicula(item.id)" variant="primary">Marcar como vista</b-button>
-        <b-button v-else-if="item.visto" href="#" v-on:click="desmarcarPelicula(item.id)" variant="secondary">Desmarcar</b-button>
+        <b-button v-else-if="item.visto" href="#" v-on:click="desmarcarPelicula(item.idrelacion)" variant="secondary">Desmarcar</b-button>
         
       </b-card>
     </div>
@@ -38,7 +38,7 @@ import axios from "axios";
 import { useStore } from "../store/store";
 
 export default {
-  name: "HomeAutenticado",
+  name: "Peliculas",
   components: {
     Titulo
   },
@@ -80,6 +80,7 @@ export default {
           for (let j = 0; j < data.length; j++) {
             if (arrTemp[i].id == data[j].idpelicula && this.usuario.id == data[j].idusuario) {
               arrTemp[i].visto = true;
+              arrTemp[i].idrelacion = data[j].id;
             }
           }
         }

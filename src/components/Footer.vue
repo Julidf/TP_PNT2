@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      texto: "Optimus todos los derechos reservados",
+      texto: "Ortflix todos los derechos reservados",
     };
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Titulo texto="Listado de series y películas marcas como vistas" />
+    <Titulo texto="Listado de series y películas marcadas como vistas" />
     <div v-for="(item, index) in arrayPeliculas" :key="index" class="col">
       <b-card
         :title="item.nombre"
@@ -37,7 +37,7 @@ import axios from "axios";
 import { useStore } from "../store/store";
 
 export default {
-  name: "Peliculas",
+  name: "PeliculasVistas",
   components: {
     Titulo
   },
@@ -55,8 +55,6 @@ export default {
   },
   mounted() {
     this.usuario = this.store.getUsuario
-  },
-  created() {
     this.traerPeliculasVistas();
   },
   methods: {
@@ -68,39 +66,39 @@ export default {
         );
         const data = await res.data;
 
-        this.arrayPeliculas = data;
+        let arrTemp = data;
 
-        for (let i = 0; i < this.arrayPeliculas.length; i++) {
+        // traigo la relacion de cada pelicula, y la agrego al array
+        for (let i = 0; i < arrTemp.length; i++) {
           const res = await axios.get
           (
             "https://62954fba63b5d108c19cb5bd.mockapi.io/Peliculas_vistas"
           );
           const data = await res.data;
 
-          for (let j = 0; j < data.length; j++) {
-            if (!(this.arrayPeliculas[i].id == data[j].idpelicula && this.usuario.id == data[j].idusuario)) {
-              this.arrayPeliculas.splice(i, 1);
+          let arrVistasTemp = data;
+
+          // no se puede hacer de otra manea con mockapí
+          for (let j = 0; j < arrVistasTemp.length; j++) {
+            if (arrTemp[i].id == arrVistasTemp[j].idpelicula) {
+              if(this.usuario.id == arrVistasTemp[j].idusuario)
+                arrTemp[i].visto = true;
+            } else {
+              arrTemp[i].visto = false;
             }
           }
-
         }
-      console.log(this.arrayPeliculas);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async marcarPelicula(id){
-      try {
-        await axios.post
-        (
-          "https://62954fba63b5d108c19cb5bd.mockapi.io/Peliculas_vistas",
-          {
-            idpelicula: id,
-            idusuario: this.usuario.id,
-            fecha: new Date()
-          }
-        );
-        this.traerPeliculasVistas();
+        console.log(arrTemp);
+
+        // remove from array if not visto
+        // for (let i = 0; i < arrTemp.length; i++) {
+        //   if (arrTemp[i].visto == false) {
+        //     arrTemp.splice(i, 1);
+        //   }
+        // }
+
+
+        this.arrayPeliculas = arrTemp;
       } catch (error) {
         console.log(error);
       }

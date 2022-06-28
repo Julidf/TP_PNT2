@@ -38,7 +38,7 @@ import axios from "axios";
 import { useStore } from "../store/store";
 
 export default {
-  name: "Peliculas",
+  name: "HomeAutenticado",
   components: {
     Titulo
   },
@@ -77,8 +77,6 @@ export default {
           );
           const data = await res.data;
           // no se puede hacer de otra manea con mockapí
-
-          // si el id de pelicula esta en el array y el id de usuario tambien, la marco como vista
           for (let j = 0; j < data.length; j++) {
             if (arrTemp[i].id == data[j].idpelicula && this.usuario.id == data[j].idusuario) {
               arrTemp[i].visto = true;

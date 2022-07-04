@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import { useStore } from "../store/store";
+import { useStore } from "@/store/store";
 import axios from "axios";
 
 import Titulo from "../components/Titulo.vue";

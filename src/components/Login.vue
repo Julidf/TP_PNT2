@@ -50,7 +50,6 @@
 <script>
 import axios from "axios";
 
-// import { mapActions } from "vuex";
 import { useStore } from "../store/store";
 
 export default {
@@ -102,13 +101,7 @@ export default {
         console.log(error);
       }
     },
-    // ...mapActions(),
-    //...mapActions(["accionRegistrarUsuario", "accionRegistrarTodasLasFavoritas"]),
   }, 
-
-
-
-
 };
 
 </script>

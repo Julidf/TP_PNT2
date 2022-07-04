@@ -51,13 +51,13 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes,
 });
+
 Vue.use(pinia);
 
 router.beforeEach((to, from, next) => {
 
     if (to.meta.requiereAuth){
       const store = useStore();
-      // const store = useStore(pinia);
       if (to.meta.requiereAuth && !store.estaLogueado){
         next({ name: "Login" }); 
       } else{
